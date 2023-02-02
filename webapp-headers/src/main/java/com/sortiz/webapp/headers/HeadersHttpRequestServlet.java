@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.http.HttpRequest;
+import java.util.Enumeration;
 
 @WebServlet({"/headers-request", ""})
 public class HeadersHttpRequestServlet extends HttpServlet {
@@ -27,6 +28,7 @@ public class HeadersHttpRequestServlet extends HttpServlet {
         String schema = req.getScheme();
         String host = req.getHeader("host"); // devuelve la ruta
         String fullUrl = schema + "/" + host + "/" + contextPath + servletPath;
+        String ipCliente = req.getRemoteAddr(); //en este caso la misma que el servidor
 
 
 
@@ -51,6 +53,13 @@ public class HeadersHttpRequestServlet extends HttpServlet {
             out.println("<li>" + schema + "</li>");
             out.println("<li>" + host + "</li>");
             out.println("<li><a href="+ fullUrl +">" + fullUrl + "</a></li>");
+            out.println("<li>IPCliente: " + ipCliente +  "</li>");
+
+            Enumeration<String> headerNames = req.getHeaderNames();
+            while(headerNames.hasMoreElements()){
+                String header = headerNames.nextElement();
+                out.println("<li>" + header + ":" + req.getHeader(header) + "</li>");
+            }
             out.println("</ul>");
             out.println("</body>");
             out.println("</html>");
