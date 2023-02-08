@@ -1,1 +1,5 @@
-com\sortiz\webapp\headers\HeadersHttpRequestServlet.class
+com\sortiz\webapp\headers\model\Product.class
+com\sortiz\webapp\headers\service\ProductService.class
+com\sortiz\webapp\headers\controller\HeadersHttpRequestServlet.class
+com\sortiz\webapp\headers\service\ProductServiceImpl.class
+com\sortiz\webapp\headers\controller\ProductXlsServlet.class
